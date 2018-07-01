@@ -11,6 +11,10 @@
 |
 */
 
-Route::get('/', function () {
-    return view('index');
+Route::post('signup', 'UserController@signup');
+Route::get('/', 'UserController@index')->name('/');
+Route::post('signin', 'UserController@login');
+Route::get('/dashboard/{auth}', 'UserController@dashboard')->name('dashboard');
+Route::get('signin', function(){
+        redirect('/');
 });

@@ -7,14 +7,14 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Foorloop Hack-ife</title>
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css')}}">
     <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{ asset('css/bootstrap.min.css')}}" rel="stylesheet">
     <!-- Material Design Bootstrap -->
-    <link href="css/mdb.min.css" rel="stylesheet">
+    <link href="{{ asset('css/mdb.min.css')}}" rel="stylesheet">
     <!-- Your custom styles (optional) -->
-    <link href="css/style.css" rel="stylesheet">
-    <link rel="icon" href="img/favicon.png">
+    <link href="{{ asset('css/style.css')}}" rel="stylesheet">
+    <link rel="icon" href="{{ asset('img/favicon.png')}}">
 </head>
 
 <body>
@@ -70,10 +70,10 @@
                         <button type="button" id="sidebarCollapse" class="btn btn-dark">
                             <i class="fa fa-align-left"></i>
                         </button>
-                        <img src="img/favicon.png" class="d-inline-block mx-auto" alt="Logo" width="150px">
+                        <img src="{{ asset('img/favicon.png')}}" class="d-inline-block mx-auto" alt="Logo" width="150px">
 
                         <span class="d-inline-block fa fa-user-circle" style="font-size:25px"></span>
-                        <span>Falola James</span>
+                    <span>{{ $details['lname'] or 'James' }}</span>
                     </div>
                 </nav>
                 <p>
@@ -170,13 +170,13 @@
             </div>
         </div>
 
-        <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="{{ asset('js/jquery-3.3.1.min.js')}}"></script>
         <!-- Bootstrap tooltips -->
-        <script type="text/javascript" src="js/popper.min.js"></script>
+    <script type="text/javascript" src="{{ asset('js/popper.min.js') }}"></script>
         <!-- Bootstrap core JavaScript -->
-        <script type="text/javascript" src="js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
         <!-- MDB core JavaScript -->
-        <script type="text/javascript" src="js/mdb.min.js">
+        <script type="text/javascript" src="{{ asset('js/mdb.min.js') }}">
         </script>
         <script>
             $(document).ready(function() {

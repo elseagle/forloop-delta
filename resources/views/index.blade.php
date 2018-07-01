@@ -2,19 +2,19 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Foorloop Hack-ife</title>
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="css/font-awesome.min.css">
-    <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <!-- Material Design Bootstrap -->
-    <link href="css/mdb.min.css" rel="stylesheet">
-    <!-- Your custom styles (optional) -->
-    <link href="css/style.css" rel="stylesheet">
-    <link rel="icon" href="img/favicon.png">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Foorloop Hack-ife</title>
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css')}}">
+        <!-- Bootstrap core CSS -->
+        <link href="{{ asset('css/bootstrap.min.css')}}" rel="stylesheet">
+        <!-- Material Design Bootstrap -->
+        <link href="{{ asset('css/mdb.min.css')}}" rel="stylesheet">
+        <!-- Your custom styles (optional) -->
+        <link href="{{ asset('css/style.css')}}" rel="stylesheet">
+        <link rel="icon" href="{{ asset('img/favicon.png')}}">
 
 </head>
 
@@ -41,7 +41,7 @@
                         <a class="nav-link " href="#">Services</a>
                     </li>
                     <li class="nav-item mx-2">
-                        <button class="btn btn-sm btn-success">Sign in</button>
+                        <button class="btn btn-sm btn-success" data-toggle="modal" data-target="#loginModal">Sign in</button>
                     </li>
 
                 </ul>
@@ -83,7 +83,8 @@
         </div>
         <div class="container justify-content-center">
             <center>
-                <button type="button" class="btn btn-success" data-toggle="modal" id="join-button" data-target="#exampleModal">
+
+                    <button type="button" class="btn btn-success" data-toggle="modal" id="join-button" data-target="#exampleModal">
                         Join Today
                     </button>
                 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -99,23 +100,23 @@
                                                 <h4 class="card-title mt-2">Sign up</h4>
                                             </header>
                                             <article class="card-body">
-                                                <form>
-                                                    <div class="form-row">
+                                            {!! Form::open(['url'=>'signup', 'method'=>'post' ]) !!}
+                                                <div class="form-row">
                                                         <div class="col form-group text-left font-weight-bold">
                                                             <label>First name </label>
-                                                            <input type="text" class="form-control" name="fname" placeholder="Enter Firstname">
+                                                            <input type="text" required class="form-control" name="fname" placeholder="Enter Firstname">
                                                         </div>
                                                         <!-- form-group end.// -->
                                                         <div class="col form-group text-left font-weight-bold">
                                                             <label>Last name</label>
-                                                            <input type="text" class="form-control" name="lname" placeholder="Enter Lastname ">
+                                                            <input type="text" required class="form-control" name="lname" placeholder="Enter Lastname ">
                                                         </div>
                                                         <!-- form-group end.// -->
                                                     </div>
                                                     <!-- form-row end.// -->
                                                     <div class="form-group text-left font-weight-bold">
                                                         <label>Email address</label>
-                                                        <input type="email" class="form-control" name="email" placeholder="Enter Email address">
+                                                        <input type="email" required class="form-control" name="email" placeholder="Enter Email address">
                                                         <small class="form-text text-muted">We'll never share your email with anyone else.</small>
                                                     </div>
                                                     <!-- form-group end.// -->
@@ -123,7 +124,7 @@
                                                     <div class="form-row">
                                                         <div class="form-group text-left font-weight-bold col-md-6">
                                                             <label>City</label>
-                                                            <input type="text" class="form-control" name="city" placeholder="Enter City you live in">
+                                                            <input type="text" required class="form-control" name="city" placeholder="Enter City you live in">
                                                         </div>
                                                         <!-- form-group end.// -->
                                                         <div class="form-group text-left font-weight-bold col-md-6">
@@ -138,7 +139,7 @@
                                                     <!-- form-row.// -->
                                                     <div class="form-group text-left font-weight-bold">
                                                         <label class="text-left">Create password</label>
-                                                        <input class="form-control" type="password" name="password" placeholder="Create Password">
+                                                        <input class="form-control" required type="password" name="password" placeholder="Create Password">
                                                     </div>
                                                     <!-- form-group end.// -->
                                                     <div class="form-group">
@@ -146,7 +147,7 @@
                                                     </div>
                                                     <!-- form-group// -->
                                                     <small class="text-muted">By clicking the 'Sign Up' button, you confirm that you accept our <br> Terms of use and Privacy Policy.</small>
-                                                </form>
+                                                {!! Form::close() !!}
                                             </article>
                                             <!-- card-body end .// -->
                                             <div class="border-top card-body text-center">Have an account? <a href="">Log In</a></div>
@@ -159,7 +160,7 @@
                                 <!-- row.//-->
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                             </div>
                         </div>
                     </div>
@@ -172,6 +173,16 @@
         <div class="container-fluid p-2">
             <div class="row justify-content-center">
                 <div class="col-sm-8">
+                        @if(isset($errors) && count($errors)>0)
+                        @foreach($errors->all() as $error)    
+                            <div class="alert alert-warning alert-dismissible fade show " role="alert">
+                                {{$error}}
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        @endforeach
+                    @endif
                     <h3 class="font-weight-bold text-center verdana">Stressful tranferring funds at regular intervals right? </h3>
                     <div class="d-block text-center" style="font-size:20px;"><span class="fa fa-refresh fa-spin"></span></div>
                     <p class="lead text-center">
@@ -293,7 +304,7 @@
             <div class="row">
                 <div class="col-sm-12">
                     <center>
-                        <button class="btn btn-secondary mx-auto">
+                        <button class="btn btn-secondary mx-auto" data-toggle="modal" data-target="#exampleModal">
                                 Sign Up Today
                         </button>
                     </center>
@@ -348,40 +359,64 @@
         </div>
     </footer>
 
-<div class="modal" id="loginModal">
-  <div class="modal-dialog">
-    <div class="modal-content">
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <!--Modal: Contact form-->
+    <div class="modal-dialog cascading-modal" role="document">
 
-      <!-- Modal Header -->
-      <div class="modal-header">
-        <h4 class="modal-title">Modal Heading</h4>
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-      </div>
+        <!--Content-->
+        <div class="modal-content">
 
-      <!-- Modal body -->
-      <div class="modal-body">
-        Modal body..
-      </div>
+            <!--Header-->
+            <div class="modal-header bg-success white-text">
+                <h4 class="title">
+                    <i class="fa fa-user"></i> Sign In</h4>
+                <button type="button" class="close waves-effect waves-light" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <!--Body-->
+            <div class="modal-body">
 
-      <!-- Modal footer -->
-      <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-      </div>
+                {!! Form::open(['url'=> 'signin', 'method'=>'post']) !!}
+                    <!-- Material input name -->
+                    <div class="md-form form-sm">
+                        <i class="fa fa-envelope prefix"></i>
+                        <input type="text" name="email" id="materialFormNameModalEx1" class="form-control form-control-sm">
+                        <label for="materialFormNameModalEx1">Your Email</label>
+                    </div>
 
+                    <!-- Material input email -->
+                    <div class="md-form form-sm">
+                        <i class="fa fa-lock prefix"></i>
+                        <input type="password" name="password" id="materialFormEmailModalEx1" class="form-control form-control-sm">
+                        <label for="materialFormEmailModalEx1">Password</label>
+                    </div>
+
+                    
+
+                    <div class="text-center mt-4 mb-2">
+                        <button class="btn btn-success">Sign in
+                            <i class="fa fa-sign-in ml-2"></i>
+                        </button>
+                    </div>
+                {!! Form::close() !!}
+
+            </div>
+        </div>
+        <!--/.Content-->
     </div>
-  </div>
+    <!--/Modal: Contact form-->
 </div>
-
 
     <!-- SCRIPTS -->
     <!-- JQuery -->
-    <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
-    <!-- Bootstrap tooltips -->
-    <script type="text/javascript" src="js/popper.min.js"></script>
-    <!-- Bootstrap core JavaScript -->
-    <script type="text/javascript" src="js/bootstrap.min.js"></script>
-    <!-- MDB core JavaScript -->
-    <script type="text/javascript" src="js/mdb.min.js"></script>
+    <script type="text/javascript" src="{{ asset('js/jquery-3.3.1.min.js')}}"></script>
+        <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="{{ asset('js/popper.min.js') }}"></script>
+        <!-- Bootstrap core JavaScript -->
+        <script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
+        <!-- MDB core JavaScript -->
+        <script type="text/javascript" src="{{ asset('js/mdb.min.js') }}">
     <script>
         $(document).ready(function() {
             $(window).scroll(function() {
