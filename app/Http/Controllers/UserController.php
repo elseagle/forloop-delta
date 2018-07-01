@@ -23,18 +23,14 @@ class UserController extends Controller
         $signup->country = $request->input('country');
         $signup->password = Hash::make($request->input('password'));
 
-        if($signup->save()){
-            return view('dashboard')->with('details', [
-                'fname'=> $request->input('fname'),
-                'lname'=> $request->input('lname'),
-                'email'=> $request->input('email'),
-                'city'=> $request->input('city'),
-                'city'=> $request->input('city'),
-            ]);
-        }
-        else{
+        if($signup->save()):
+            $request->session()->put('authId',$signup->email.$signup->password);
+            $email =strstr($signup->email, '@', true);
+
+            return redirect()->route('dashboard', ['auth'=>$email]);
+        else:
             return 'error communicating with db';
-        }
+        endif;
     }
 
     public function login(Request $request){
@@ -54,7 +50,7 @@ class UserController extends Controller
             if(Hash::check($password,$hashed)):
                 // return view('dashboard')->with('details', $details);
                 // return (array)$details;\
-                $email =strstr($email, '@', true);
+                $email = strtolower(strstr($email, '@', true));
                 return redirect()->route('dashboard', ['auth'=>$email]);
             else:
                 return 'Invalid username or password';
@@ -68,15 +64,23 @@ class UserController extends Controller
     public function dashboard(Request $request, $auth){
            
             $details = DB::table('signups')->where('email', $auth.'@gmail.com')->first();
+            if(DB::table('signups')->where('email', $auth.'@gmail.com')->exists() == false && $request->session()->has('authId')){
+                return 'error';
+            }
             $authConfirm = (array)$details;
             
-            if($authConfirm['email'].$authConfirm['password'] == $request->session()->get('authId')):
+            if(strtolower($authConfirm['email'].$authConfirm['password']) == strtolower($request->session()->get('authId'))):
                 return view('dashboard')->with('details',$authConfirm);
             else:
                 return redirect()->route('/');
             endif;
             // return $auth.$request->session()->get('authId');
 
+    }
+
+    public function logout(Request $request){
+        $request->session()->pull('authId');
+        return redirect()->route('/');
     }
 
     public function index(){

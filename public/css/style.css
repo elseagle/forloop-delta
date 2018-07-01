@@ -172,6 +172,14 @@ p {
     background-blend-mode: overlay;
 }
 
+#navbar-head {
+    background-image: url('../img/accounting-achievement-aerial-1043506.jpg');
+    background-size: cover;
+    background-color: rgba(00, 0, 0, .9);
+    background-position: center;
+    background-blend-mode: overlay;
+}
+
 #sidebar a {
     text-decoration: none !important;
     color: white !important;

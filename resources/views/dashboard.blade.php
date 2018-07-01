@@ -33,7 +33,10 @@
                 </div>
 
                 <ul class="list-unstyled components">
-                    <p>Dummy Heading</p>
+                    <p>
+                        <span class="d-inline-block mr-1 fa fa-user"></span>
+                        <span class="comic"> {{ $details['lastname']." ".$details['firstname'] }}</span> 
+                    </p>
                     <li class="active">
                         <a href="#homeSubmenu" aria-expanded="false"> <span class="fa fa-home"></span> Home</a>
                     </li>
@@ -65,15 +68,18 @@
             </nav>
             <!-- Page Content -->
             <div id="content">
-                <nav class="navbar navbar-expand-sm navbar-light py-0 bg-light">
+                <nav class="navbar navbar-expand-sm navbar-dark py-0 bg-dark text-light" id="navbar-head">
                     <div class="container-fluid">
-                        <button type="button" id="sidebarCollapse" class="btn btn-dark">
-                            <i class="fa fa-align-left"></i>
+                        <button type="button" id="sidebarCollapse" class="btn btn-link text-light">
+                            <i class="fa fa-align-left text-light" style="font-size:25px"></i>
                         </button>
                         <img src="{{ asset('img/favicon.png')}}" class="d-inline-block mx-auto" alt="Logo" width="150px">
 
-                        <span class="d-inline-block fa fa-user-circle" style="font-size:25px"></span>
-                    <span>{{ $details['lname'] or 'James' }}</span>
+                    {!! Form::open(['url'=>'logout', 'method'=>'post']) !!}
+                        <button class="btn btn-light btn-sm">
+                            <span class="fa fa-sign-out"></span> Sign Out
+                        </button>
+                    {!! Form::close() !!}
                     </div>
                 </nav>
                 <p>
