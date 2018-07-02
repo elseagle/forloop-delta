@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 02, 2018 at 12:37 PM
+-- Generation Time: Jul 02, 2018 at 01:35 PM
 -- Server version: 10.1.33-MariaDB
 -- PHP Version: 7.2.6
 
@@ -35,6 +35,7 @@ CREATE TABLE `beneficiaries` (
   `interval` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `account` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `status` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `sender` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `description` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `random` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -45,11 +46,12 @@ CREATE TABLE `beneficiaries` (
 -- Dumping data for table `beneficiaries`
 --
 
-INSERT INTO `beneficiaries` (`id`, `name`, `amount`, `interval`, `account`, `status`, `description`, `random`, `created_at`, `updated_at`) VALUES
-(1, 'James', '10002', '7', '4565689876', 'active', 'james', 'cETllqJuuk', '2018-07-02 09:05:20', '2018-07-02 09:05:20'),
-(2, 'James', '12000', '7', '1234567890', 'active', 'ytest', 'eFHd4QyngK', '2018-07-02 09:08:41', '2018-07-02 09:08:41'),
-(3, 'Erioluwa', '1200', '7', '9890987656', 'active', 'For me to do all this\r\nBullshit', 'ZCr3GC6VPF', '2018-07-02 09:17:03', '2018-07-02 09:17:03'),
-(4, 'Name', '8900', '7', '2290019283', 'active', 'james is stull testing', 'znYOd6vzuB', '2018-07-02 09:22:04', '2018-07-02 09:22:04');
+INSERT INTO `beneficiaries` (`id`, `name`, `amount`, `interval`, `account`, `status`, `sender`, `description`, `random`, `created_at`, `updated_at`) VALUES
+(1, 'James', '10002', '7', '4565689876', 'active', 'fjhhames', 'james', 'cETllqJuuk', '2018-07-02 09:05:20', '2018-07-02 09:05:20'),
+(2, 'James', '12000', '7', '1234567890', 'active', 'fjhhames', 'ytest', 'eFHd4QyngK', '2018-07-02 09:08:41', '2018-07-02 09:08:41'),
+(3, 'Erioluwa', '1200', '7', '9890987656', 'active', 'fjhhames', 'For me to do all this\r\nBullshit', 'ZCr3GC6VPF', '2018-07-02 09:17:03', '2018-07-02 09:17:03'),
+(4, 'Name', '8900', '7', '2290019283', 'active', 'fjhhames', 'james is stull testing', 'znYOd6vzuB', '2018-07-02 09:22:04', '2018-07-02 09:22:04'),
+(5, 'James again', '12900', '14', '0909876567', 'active', 'f', 'James is a good boy iya iya o', '90yfHGceIj', '2018-07-02 10:29:59', '2018-07-02 10:29:59');
 
 -- --------------------------------------------------------
 
@@ -134,7 +136,8 @@ INSERT INTO `signups` (`id`, `firstname`, `lastname`, `city`, `country`, `email`
 (3, 'ka,e', 'jmws', 'kjjs', 'Nigeria', 'james@gmail.com', '$2y$10$p430/UzkPQqlma.gSKS88.ydbyUyGKIp5K9CCqDGVnnZZARBd/ESa', NULL, '2018-07-01 16:46:14', '2018-07-01 16:46:14'),
 (4, 'Falola', 'James', 'ife', 'Nigeria', 'james@gmail.coms', '$2y$10$GG6hWCT2ip7ynF.4RQAy4eWr9qV0n.Tvrq/panojoWnBJIoVr0H8S', NULL, '2018-07-01 20:18:11', '2018-07-01 20:18:11'),
 (5, 'mbappe', 'kylian', 'ife', 'Nigeria', 'kmbappe@gmail.com', '$2y$10$mY7ZHUTvqWkhHT1mpaWV3Of8LWFuxiZPnsSBkD2UhQxacIwEgzJk6', NULL, '2018-07-01 21:58:18', '2018-07-01 21:58:18'),
-(6, 'firstname', 'lastname', 'ife', 'Nigeria', 'james1@gmail.com', '$2y$10$laQhUGvGxM8nwDlJY0uc4uUgyh9xJ8fc4po5g7w.CmB8e1jqnYkJy', NULL, '2018-07-02 06:11:42', '2018-07-02 06:11:42');
+(6, 'firstname', 'lastname', 'ife', 'Nigeria', 'james1@gmail.com', '$2y$10$laQhUGvGxM8nwDlJY0uc4uUgyh9xJ8fc4po5g7w.CmB8e1jqnYkJy', NULL, '2018-07-02 06:11:42', '2018-07-02 06:11:42'),
+(7, 'Falola', 'James', 'OAU', 'Nigeria', 'F@gmail.com', '$2y$10$Ygv7JzWkKxD34XcQuwT1y.S060OjqlUNkI0FN68UtxFx2GgYXtUTq', NULL, '2018-07-02 09:47:08', '2018-07-02 09:47:08');
 
 --
 -- Indexes for dumped tables
@@ -180,7 +183,7 @@ ALTER TABLE `signups`
 -- AUTO_INCREMENT for table `beneficiaries`
 --
 ALTER TABLE `beneficiaries`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -198,7 +201,7 @@ ALTER TABLE `signup`
 -- AUTO_INCREMENT for table `signups`
 --
 ALTER TABLE `signups`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
