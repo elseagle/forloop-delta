@@ -27,17 +27,20 @@ class BeneficiaryController extends Controller
 
         $ben = new Beneficiary;
 
+        $ses = $request->session()->get('sessionDetails');
+        $email =strstr($ses['email'], '@', true);
+        $email = strtolower($email);
+
         $ben->name = $name;
         $ben->interval = $interval;
         $ben->account = $account;
         $ben->amount = $amount;
         $ben->status = $status;
+        $ben->sender =$email;
         $ben->description = $description;
         $ben->random = $random;
             
-        $ses = $request->session()->get('sessionDetails');
-        $email =strstr($ses['email'], '@', true);
-        $email = strtolower($email);
+       
         
         if($ben->save()):
             return redirect()->route('dashboard',['auth'=>$email ]);

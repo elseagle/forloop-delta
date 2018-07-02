@@ -74,7 +74,7 @@ class UserController extends Controller
             if(strtolower($authConfirm['email'].$authConfirm['password']) == strtolower($request->session()->get('authId'))):
                 return view('dashboard')->with([
                     'details'=> $authConfirm,
-                    'beneficiary' => DB::table('beneficiaries')->get(),
+                    'beneficiary' => DB::table('beneficiaries')->where('sender', $auth)->get(),
                 ]);
             else:
                 return redirect()->route('/');
