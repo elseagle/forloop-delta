@@ -98,47 +98,51 @@
                 <section>
                     <div class="container">
                         <div class="row">
-                            <div class="col-md-4 mb-4">
-                                <!-- Card -->
-                                <div class="card ovf-hidden">
+                            @if(count($beneficiary)> 0)
+                            @foreach($beneficiary as $ben)
 
-                                    <!-- Card image -->
-                                    <div class="view overlay">
-                                        <a>
-                                            <div class="mask waves-effect waves-light rgba-white-slight"></div>
-                                        </a>
+                                <div class="col-md-4 mb-4">
+                                    <!-- Card -->
+                                    <div class="card ovf-hidden">
+
+                                        <!-- Card image -->
+                                        <div class="view overlay">
+                                            <a>
+                                                <div class="mask waves-effect waves-light rgba-white-slight"></div>
+                                            </a>
+                                        </div>
+
+                                        <!-- Card content -->
+                                        <div class="card-body">
+
+                                            <!-- Title -->
+                                            <h4 class="card-title font-weight-bold"><span class="fa fa-user-circle"></span> {{ $ben->name }} </h4>
+                                            <hr>
+                                            <!-- Text -->
+                                            <p class="card-text">
+                                                <p>Send <span class="text-success">{{ $ben->amount }}</span> | every <span class="text-primary"> {{ $ben->interval }}days </span> </p>
+                                                <p> <span class="font-weight-bold"> Status :</span> <span class="text-success">{{ $ben->status }}</span> </p>
+                                                <p> <span class="font-weight-bold"> Account Number :</span> <span> {{ $ben->account }} </span> </p>
+                                                <P class="lead"> {{ $ben->description }} </P>
+                                                <button class="btn btn-light btn-sm mt-4"> <span class="fa fa-money"></span>  #{{ $ben->amount }} | click to Add </button>    
+                                            </p>
+                                            <hr>
+                                            <button class="btn btn-danger float-left btn-sm"> Pause </button>
+                                            <button class="btn btn-success float-right btn-sm"> Continue </button>
+
+                                            <a class="link-text">
+                                                <!-- <h5>Read more <i class="fa fa-angle-double-right ml-2"></i></h5> -->
+                                            </a>
+
+                                        </div>
+
+
+
                                     </div>
-
-                                    <!-- Card content -->
-                                    <div class="card-body">
-
-                                        <!-- Title -->
-                                        <h4 class="card-title font-weight-bold"><span class="fa fa-user-circle"></span> Mr doe </h4>
-                                        <hr>
-                                        <!-- Text -->
-                                        <p class="card-text">
-                                            <p>Send <span class="text-success">1000</span> | every <span class="text-primary">2days</span> </p>
-                                            <p> <span class="font-weight-bold"> Status :</span> <span class="text-success">active</span> </p>
-                                            <p> <span class="font-weight-bold"> Account Number :</span> <span> 3434****234 </span> </p>
-                                            <P class="lead"> Fund for this and  that </P>
-                                            <button class="btn btn-light btn-sm mt-4"> <span class="fa fa-money"></span>  #9000 | click to Add </button>    
-                                        </p>
-                                        <hr>
-                                        <button class="btn btn-danger float-left btn-sm"> Pause </button>
-                                        <button class="btn btn-success float-right btn-sm"> Continue </button>
-
-                                        <a class="link-text">
-                                            <!-- <h5>Read more <i class="fa fa-angle-double-right ml-2"></i></h5> -->
-                                        </a>
-
-                                    </div>
-
-
-
+                                    <!-- Card -->
                                 </div>
-                                <!-- Card -->
-                            </div>
-
+                                @endforeach
+                                @endif
 
                         </div>
                     </div>

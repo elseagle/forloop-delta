@@ -13,7 +13,7 @@ class BeneficiaryController extends Controller
         $this->validate($request, [
             'name' => 'required',
             'interval'=> 'required',
-            'amount'=> 'required|numeric|max:1000',
+            'amount'=> 'required|numeric|min:1000',
             'account'=>'required|numeric|digits:10'
         ]);
         
@@ -34,9 +34,16 @@ class BeneficiaryController extends Controller
         $ben->status = $status;
         $ben->description = $description;
         $ben->random = $random;
-    
-        return $request->session()->all();
-
+            
+        $ses = $request->session()->get('sessionDetails');
+        $email =strstr($ses['email'], '@', true);
+        $email = strtolower($email);
+        
+        if($ben->save()):
+            return redirect()->route('dashboard',['auth'=>$email ]);
+        else:
+            'Database error';
+        endif;
 
     }
 }

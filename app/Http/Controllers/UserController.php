@@ -69,9 +69,13 @@ class UserController extends Controller
                 return 'error';
             }
             $authConfirm = (array)$details;
+            $request->session()->put('sessionDetails',$authConfirm);
             
             if(strtolower($authConfirm['email'].$authConfirm['password']) == strtolower($request->session()->get('authId'))):
-                return view('dashboard')->with('details',$authConfirm);
+                return view('dashboard')->with([
+                    'details'=> $authConfirm,
+                    'beneficiary' => DB::table('beneficiaries')->get(),
+                ]);
             else:
                 return redirect()->route('/');
             endif;
