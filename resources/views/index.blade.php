@@ -130,9 +130,9 @@
                                                         <div class="form-group text-left font-weight-bold col-md-6">
                                                             <label>Country</label>
                                                             <select id="inputState" name="country" class="form-control">
-                                            <option selected="">Nigeria</option>
-                                            <option>Other</option>
-                                        </select>
+                                                                <option selected="">Nigeria</option>
+                                                                <option>Other</option>
+                                                            </select>
                                                         </div>
                                                         <!-- form-group end.// -->
                                                     </div>
@@ -181,8 +181,8 @@
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
-                        @endforeach
-                    @endif
+                            @endforeach
+                        @endif
                     <h3 class="font-weight-bold text-center verdana">Stressful tranferring funds at regular intervals right? </h3>
                     <div class="d-block text-center" style="font-size:20px;"><span class="fa fa-refresh fa-spin"></span></div>
                     <p class="lead text-center">
@@ -416,7 +416,7 @@
         <!-- Bootstrap core JavaScript -->
         <script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
         <!-- MDB core JavaScript -->
-        <script type="text/javascript" src="{{ asset('js/mdb.min.js') }}">
+        <script type="text/javascript" src="{{ asset('js/mdb.min.js') }}"> </script>
     <script>
         $(document).ready(function() {
             $(window).scroll(function() {

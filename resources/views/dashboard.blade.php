@@ -85,7 +85,16 @@
                 <p>
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit. Error, modi. Odit deserunt fugiat dicta Lorem ipsum dolor sit amet consectetur.. Lorem, ipsum dolor.
                 </p>
-
+                @if(isset($errors) && count($errors)>0)
+                        @foreach($errors->all() as $error)    
+                            <div class="alert alert-warning alert-dismissible fade show " role="alert">
+                                {{$error}}
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            @endforeach
+                        @endif
                 <section>
                     <div class="container">
                         <div class="row">
@@ -104,27 +113,19 @@
                                     <div class="card-body">
 
                                         <!-- Title -->
-                                        <h4 class="card-title font-weight-bold"> Mr doe </h4>
+                                        <h4 class="card-title font-weight-bold"><span class="fa fa-user-circle"></span> Mr doe </h4>
                                         <hr>
                                         <!-- Text -->
                                         <p class="card-text">
-                                            <span class="text-primary">1000</span> | <span class="text-danger">2days</span>
-                                            <p class="lead">
-                                                Description
-                                            </p>
-                                            <p class="lead">
-                                                Description
-                                            </p>
-                                            <p class="lead">
-                                                Description
-                                            </p>
-                                            <p class="lead">
-                                                Description
-                                            </p>
-
+                                            <p>Send <span class="text-success">1000</span> | every <span class="text-primary">2days</span> </p>
+                                            <p> <span class="font-weight-bold"> Status :</span> <span class="text-success">active</span> </p>
+                                            <p> <span class="font-weight-bold"> Account Number :</span> <span> 3434****234 </span> </p>
+                                            <P class="lead"> Fund for this and  that </P>
+                                            <button class="btn btn-light btn-sm mt-4"> <span class="fa fa-money"></span>  #9000 | click to Add </button>    
                                         </p>
                                         <hr>
-                                        <button class="btn btn-info float-right btn-sm">View </button>
+                                        <button class="btn btn-danger float-left btn-sm"> Pause </button>
+                                        <button class="btn btn-success float-right btn-sm"> Continue </button>
 
                                         <a class="link-text">
                                             <!-- <h5>Read more <i class="fa fa-angle-double-right ml-2"></i></h5> -->
@@ -160,17 +161,59 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                        <h5 class="modal-title " id="exampleModalLabel"><span class="fa fa-user"></span> Add new Beneficiary </h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
-                        ...
+                        {!! Form::open(['url'=>'addben', 'method'=>'POST']) !!}
+                           <div class="row">
+                                <div class="form-group col-md-12">
+                                    <label for="benName" class="font-weight-bold">Enter Name</label>
+                                    <input type="text" id="benName" name="name" class="form-control" placeholder="Enter Recipient's Name">
+                                </div>
+
+                                <div class="form-group col-md-6">
+                                    <label for="benAcc" class="font-weight-bold">Enter Amount</label>
+                                    <input type="text" id="benAcc" name="amount" class="form-control" placeholder="Enter Amount">
+                                </div>
+                                    
+                                <div class="form-group col-md-6" >
+                                    <label class="font-weight-bold" id="benInterval">Select Interval</label>
+                                    <select id="benInterval" name="interval" class="form-control">
+                                            <option selected="" value="7">Weekly </option>
+                                            <option value="14">2 Weeks </option>
+                                            <option value="21">3 Weeks </option>
+                                            <option value="30">Monthly </option>
+                                            <option value="365">Yearly </option>
+                                    </select>
+                                </div>
+                                
+                                <div class="form-group col-md-12">
+                                        <label for="benAccount" class="font-weight-bold">Account Number</label>
+                                        <input type="number" id="benAccount" name="account" class="form-control" placeholder="Enter Recipient's Account Number">
+                                </div>
+
+                                <div class="form-group col-md-12">
+                                        <label for="benDesc" class="font-weight-bold"> Description </label>
+                                        <textarea type="text" id="benDesc" name="description" class="form-control" rows="4" placeholder="Enter description ">
+                                        
+                                        </textarea>
+                                </div>
+                                
+        
+                            </div>
+                            <button class="btn btn-success"> Add </button>
+                           {!! Form::close() !!}
+
+                           
+
+                     
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                        {{-- <button type="button" role="submit" class="btn btn-success">Save changes</button> --}}
                     </div>
                 </div>
             </div>

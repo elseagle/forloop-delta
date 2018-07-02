@@ -6,6 +6,7 @@ use DB;
 use Hash;
 use App\Signup;
 use Illuminate\Http\Request;
+use Validator;
 
 class UserController extends Controller
 {

@@ -16,3 +16,4 @@ Route::get('/', 'UserController@index')->name('/');
 Route::post('signin', 'UserController@login');
 Route::get('/dashboard/{auth}', 'UserController@dashboard')->name('dashboard');
 Route::post('logout','UserController@logout');
+Route::post('addben','BeneficiaryController@add');
